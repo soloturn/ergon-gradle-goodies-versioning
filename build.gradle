@@ -2,7 +2,7 @@
 plugins {
 	id "groovy"
 	id "java-gradle-plugin"
-	id "com.gradle.plugin-publish" version "0.10.1"
+	id("com.gradle.plugin-publish") version "0.10.1"
 }
 
 allprojects {
@@ -28,11 +28,11 @@ sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
 dependencies {
-	compile gradleApi()
-	compile "org.codehaus.groovy:groovy-all:2.5.6"
+	compile(gradleApi())
+	compile("org.codehaus.groovy:groovy-all:2.5.6")
 
-	testCompile "org.spockframework:spock-core:1.2-groovy-2.5"
-	testCompile "org.eclipse.jgit:org.eclipse.jgit:5.2.1.201812262042-r"
+	testCompile("org.spockframework:spock-core:1.2-groovy-2.5")
+	testCompile("org.eclipse.jgit:org.eclipse.jgit:5.2.1.201812262042-r")
 }
 
 gradlePlugin {
