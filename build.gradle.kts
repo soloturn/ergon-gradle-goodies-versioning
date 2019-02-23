@@ -1,31 +1,33 @@
 
 plugins {
-	id "groovy"
-	id "java-gradle-plugin"
+	groovy
+	`java-gradle-plugin`
 	id("com.gradle.plugin-publish") version "0.10.1"
 }
 
 allprojects {
 
 	// Let's eat our own dog food (cannot be part of plugins block, though).
-	apply plugin: ch.ergon.gradle.goodies.versioning.VersioningPlugin
+	apply(plugin = "ch.ergon.gradle.goodies.versioning.VersioningPlugin")
 	group = "ch.ergon"
 
 	repositories {
 		jcenter()
 	}
 
-	test {
-		maxParallelForks = Runtime.runtime.availableProcessors()
+	tasks.withType<Test> {
+		maxParallelForks = Runtime.getRuntime().availableProcessors() 
 	}
 }
 
-test {
+tasks.withType<Test> {
 	inputs.files files("./versioning-test-data/")
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+java {
+	sourceCompatibility = JavaVersion.VERSION_1_7
+	targetCompatibility = JavaVersion.VERSION_1_7
+}
 
 dependencies {
 	compile(gradleApi())
